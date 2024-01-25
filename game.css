@@ -1,23 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka&family=Nunito+Sans:opsz@6..12&family=Poppins&display=swap');
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: 'Poppins', sans-serif;
-    background-image: url(/rock-paper-scissors/assets/bg.png);
+    background-image: url('./assets/bg.png');
 }
 
-.container{
+.container {
     margin-top: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.image-container{
+.image-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,3 +103,15 @@ p{
     flex-direction: column;
     align-items: center;
 }
+
+div.image-container{
+    margin-top: -10vw;
+}
+
+ .play-again-button{
+    margin-top: 0.4vw;
+}
+
+h2#won-text{
+    margin-top: -10vw;
+} 

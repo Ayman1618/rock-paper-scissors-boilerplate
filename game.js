@@ -1,6 +1,6 @@
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
-const scissors = document.getElementById("scissors");
+const scissors = document.getElementById("scissors"); 
 const compImg = document.getElementById("comp-img");
 const playerImg = document.getElementById("player-img");
 const removeClass = document.querySelectorAll(".rem")
@@ -23,115 +23,110 @@ let compScore = 0;
 let playerSelection = 0;
 let compSelection = 0;
 
-
-function imgVisible(){
+function imgVisible() {
     removeClass.forEach(element => {
         element.classList.remove("remove");
     });
 }
 
-function random(){
-    let num = Math.round(Math.random()*3)
-    if(num==1 && playerSelection!=1){
-        compSelection=1;
-        compImg.src = `/rock-paper-scissors/assets/rock-hand.png`;
-    }
-    else if(num==2 && playerSelection!=2){
-        compSelection=2;
-        compImg.src = `/rock-paper-scissors/assets/paper-hand.png`;
-    }
-    else if(num==3 && playerSelection!=3){
-        compSelection=3;
-        compImg.src = `/rock-paper-scissors/assets/scissors-hand.png`;
-    }
-    else{
+function random() {
+    let num = Math.round(Math.random() * 3)
+    if (num == 1 && playerSelection != 1) {
+        compSelection = 1;
+        compImg.src = "./assets/rock-hand.png";
+    } else if (num == 2 && playerSelection != 2) {
+        compSelection = 2;
+        compImg.src = "./assets/paper-hand.png";
+    } else if (num == 3 && playerSelection != 3) {
+        compSelection = 3;
+        compImg.src = "./assets/scissors-hand.png";
+    } else {
         random();
     }
 
     winChecker();
 }
 
-function winChecker(){
-    if(playerSelection==1){
-        if(compSelection==2){
+function winChecker() {
+    if (playerSelection == 1) {
+        if (compSelection == 2) {
             compWin()
+        } else {
+            playerWin()
         }
-        else{
-                playerWin()
-            }
+    } else if (playerSelection == 2) {
+        if (compSelection == 3) {
+            compWin()
+        } else {
+            playerWin()
+        }
     }
 
-    else if(playerSelection==2){
-        if(compSelection==3){
+    if (playerSelection == 3) {
+        if (compSelection == 1) {
             compWin()
+        } else {
+            playerWin()
         }
-        else{
-                playerWin()
-            }
-    }
-
-    if(playerSelection==3){
-        if(compSelection==1){
-            compWin()
-        }
-        else{
-                playerWin()
-            }
     }
 }
 
-function playerWin(){
+function playerWin() {
     playerScore++;
-    playerDisplay.innerHTML=playerScore;
+    playerDisplay.innerHTML = playerScore;
     result();
 }
 
-function compWin(){
+function compWin() {
     compScore++;
-    compDisplay.innerHTML=compScore;
+    compDisplay.innerHTML = compScore;
     result();
 }
 
-function result(){
-    compSelection=0;
-    playerSelection=0;
+function result() {
+    compSelection = 0;
+    playerSelection = 0;
 
-    if(playerScore==5){
+    if (playerScore == 5) {
         wonText.innerHTML = "You won the game";
-        removeButtons.classList.toggle("hidden")
-        res.classList.toggle("hidden")
-        
-    }
-    else if(compScore==5){
+        removeButtons.classList.remove("hidden");
+        res.classList.remove("hidden");
+        disablePlayerButtons(); 
+    } else if (compScore == 5) {
         wonText.innerHTML = "Computer won the game";
-        removeButtons.classList.toggle("hidden")
-        res.classList.toggle("hidden")
-        
+        removeButtons.classList.remove("hidden");
+        res.classList.remove("hidden");
+        disablePlayerButtons(); 
     }
+}
+
+function disablePlayerButtons() {
+    rock.onclick = null;
+    paper.onclick = null;
+    scissors.onclick = null;
 }
 
 
 rock.onclick = () => {
-    playerImg.src = `/rock-paper-scissors/assets/rock-hand.png`
-    imgVisible()
-    playerSelection = 1
-    random()
+    playerImg.src = "./assets/rock-hand.png";
+    imgVisible();
+    playerSelection = 1;
+    random();
 }
 
 paper.onclick = () => {
-    playerImg.src = `/rock-paper-scissors/assets/paper-hand.png`
-    imgVisible()
-    playerSelection = 2
-    random()
+    playerImg.src = "./assets/paper-hand.png";
+    imgVisible();
+    playerSelection = 2;
+    random();
 }
 
-scissor.onclick = () => {
-    playerImg.src = `/rock-paper-scissors/assets/scissors-hand.png`
-    imgVisible()
-    playerSelection = 3
-    random()
+scissors.onclick = () => {
+    playerImg.src = "./assets/scissors-hand.png";
+    imgVisible();
+    playerSelection = 3;
+    random();
 }
-
 
 playAgain.onclick = () => {
     location.href = "game.html";
